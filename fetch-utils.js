@@ -37,3 +37,18 @@ export async function logout(){
 
     return window.location.href = '/';
 }
+
+export async function createPoll(poll){
+    const response = await client
+        .from('polls')
+        .insert({
+            ...poll,
+            user_id: client.auth.user().id, 
+        })
+        .select('*');
+    console.log(poll);
+    return response;
+
+    
+}
+
