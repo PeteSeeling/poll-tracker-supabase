@@ -111,3 +111,8 @@ border:solid 2px;
     border-color: black;
     width:100%;
 }
+.auth-main{
+    display:flex;
+    flex-direction: column;
+}
+
