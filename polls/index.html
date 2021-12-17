@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="gutter-right logo">
+            <img src="../assets/big-logo.png" />
+        </div>
+    </header>
+    <main>
+        <h2>Polls</h2>
+        <div class="current-poll">
+            <h2>Current Poll</h2>
+            <div class="question"></div>
+            <div id="option-a-title"></div>
+            <div id="option-a-votes"></div>
+            <div id="option-b-title"></div>
+            <div id="option-b-votes"></div>
+        </div>
+        <div class="form-container">
+            <form id="form">
+                <label>Question
+                    <input name="form-question" />
+                </label>
+                <label>Option A
+                    <input name="option-a" />
+                </label>
+                <label>Option B
+                    <input name="option-b" />
+                </label>
+                <button>Submit Poll</button>
+
+            </form>
+        </div>
+        <div class="buttons">
+            <button id="option-a-add">Option A Add</button>
+            <button id="option-b-add">Option b Add</button>
+            <button id="close-poll">Close Poll</button>
+        </div>
+        <div class="past-polls">
+            <h3>Past Polls</h3>
+        </div>
+    </main>
+    <footer>
+        <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
+    </footer>
+
+    <script type="module" src="./polls.js"></script>
+</body>
+
+</html>
