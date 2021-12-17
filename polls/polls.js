@@ -28,6 +28,11 @@ let pastPollsArray = [];
 
 // set event listeners 
   // get user input
+window.addEventListener('load', async() =>{
+    await displayPastPolls();
+});
+
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(form);
