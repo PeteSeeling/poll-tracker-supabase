@@ -46,7 +46,7 @@ form.addEventListener('submit', (e) => {
     optionATitleEl.textContent = optionATitle;
     optionBTitleEl.textContent = optionBTitle;
    
-    console.log(question, optionATitle, optionBTitle);
+    
     form.reset();
     displayCurrentPollEl();
 });
@@ -71,7 +71,7 @@ closePollButton.addEventListener('click', async() =>{
 
     const poll = makePoll();
 
-    await createPoll(question, optionATitle, optionAVotes, optionBTitle, optionBVotes);
+    await createPoll(poll);
 
     
     

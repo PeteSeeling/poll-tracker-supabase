@@ -42,8 +42,8 @@ export async function logout(){
 export async function getPolls() {
     const response = await client
         .from('polls')
-        .select();
-        // .match({ user_id: client.auth.user().id, });
+        .select()
+        .match({ user_id: client.auth.user().id, });
     console.log(response.data);
     return response.data;
 }
@@ -51,17 +51,20 @@ export async function getPolls() {
 export async function createPoll(question, optionATitle, optionBTitle, optionAVotes, optionBVotes) {
     const response = await client
         .from('polls')
-        .insert([
-            {
-                question: question,
-                option_a_title: optionATitle,
-                option_a_votes: optionAVotes,
-                option_b_title: optionBTitle,
-                option_b_votes: optionBVotes,
-            },
-            // user_id: client.auth.user().id, 
-        ]);
+        .insert({
+            
+            question: question,
+            option_a_title: optionATitle,
+            option_a_votes: optionAVotes,
+            option_b_title: optionBTitle,
+            option_b_votes: optionBVotes,
+
+            user_id: client.auth.user().id, 
+        });
+      
+        
         // .select('*');
+   
     console.log(response.data);
 
     return response.data;
