@@ -60,7 +60,16 @@ optionBAddButton.addEventListener('click', () => {
     optionBVotesEl.textContent = optionBVotes;
 });
 
-closePollButton.addEventListener('click', () => {
+closePollButton.addEventListener('click', async() =>{
+    currentPollEl.textContent = '';
+
+    const poll = makePoll();
+
+    await createPoll(poll);
+    
+    const polls = await getPolls();
+    console.log(polls);
+    
 
 });
 
@@ -87,12 +96,17 @@ function resetState(){
 
 function displayCurrentPollEl(){
     
+    const currentPollEl = makeCurrentPoll();
 
     questionEl.textContent = question;
     optionATitleEl.textContent = optionATitle;
     optionBTitleEl.textContent = optionBTitle;
     optionAVotesEl.textContent = optionAVotes;
     optionBVotesEl.textContent = optionBVotes;
+
+    const newPollEl = renderPoll(currentPollEl);
+
+    newPollEl.append(currentPollEl);
 
 }
 
