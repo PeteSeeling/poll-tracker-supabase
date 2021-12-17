@@ -14,6 +14,7 @@ const optionAAddButton = document.getElementById('option-a-add');
 const optionBAddButton = document.getElementById('option-b-add');
 const closePollButton = document.getElementById('close-poll');
 const currentPollEl = document.querySelector('.current-poll');
+const pastPollsEl = document.querySelector('.past-polls');
 
 // let state
 
@@ -71,7 +72,7 @@ closePollButton.addEventListener('click', async() =>{
     const polls = await getPolls();
     console.log(polls);
     
-
+    displayPastPolls();
 });
 
 
@@ -116,3 +117,14 @@ function makeCurrentPoll(){
         question, optionATitle, optionBTitle, optionAVotes, optionBVotes
     };
 }
+
+async function displayPastPolls(){
+    const polls = await getPolls();
+
+    pastPollsEl.textContent = '';
+
+    for (let poll of polls){
+        const newPollEl = renderPoll(poll);
+
+        pastPollsEl.append(newPollEl);
+    }}

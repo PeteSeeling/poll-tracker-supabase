@@ -1,3 +1,4 @@
+import { renderPoll } from './render-utils.js';
 
 const supabase_Url = 'https://osvbnemrpkxnsdboazbe.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzOTUwODkwMywiZXhwIjoxOTU1MDg0OTAzfQ.WbfpkieH6xyID6pt237Vr_Y78Fs1wnkmUdHXoHg5twU';
@@ -64,3 +65,6 @@ export async function createPoll({ question, optionATitle, optionBTitle, optionA
 
     return response.data;
 }
+
+
+

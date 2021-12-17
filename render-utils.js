@@ -21,3 +21,4 @@ export async function renderPoll(poll){
     return newPollEl;
 
 }
+
