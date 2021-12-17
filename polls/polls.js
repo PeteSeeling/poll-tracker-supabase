@@ -71,7 +71,7 @@ closePollButton.addEventListener('click', async() =>{
 
     const poll = makePoll();
 
-    await createPoll(poll);
+    await createPoll(question, optionATitle, optionAVotes, optionBTitle, optionBVotes);
 
     
     
