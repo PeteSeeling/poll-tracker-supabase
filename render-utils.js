@@ -1,6 +1,6 @@
 
 
-export function renderPoll(poll){
+export async function renderPoll(poll){
 
     const newPollEl = document.createElement ('div');
     const newQuestionEl = document.createElement ('p');

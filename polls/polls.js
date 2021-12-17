@@ -67,6 +67,7 @@ closePollButton.addEventListener('click', async() =>{
 
     await createPoll(poll);
     
+    
     const polls = await getPolls();
     console.log(polls);
     
@@ -106,7 +107,7 @@ function displayCurrentPollEl(){
 
     const newPollEl = renderPoll(currentPollEl);
 
-    newPollEl.append(currentPollEl);
+    // newPollEl.append(currentPollEl);
 
 }
 
