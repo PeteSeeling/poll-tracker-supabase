@@ -38,17 +38,29 @@ export async function logout(){
     return window.location.href = '/';
 }
 
-export async function createPoll(poll){
+export async function getPolls() {
+    const response = await client
+        .from('polls')
+        .select()
+        .match({ user_id: client.auth.user().id, });
+    console.log(response.data);
+    return response.data;
+}
+
+export async function createPoll(optionATitle, optionBTitle, optionAVotes, optionBVotes){
     const response = await client
         .from('polls')
         .insert({
-            ...poll,
+            // question: question,
+            option_a_title: optionATitle,
+            option_a_votes: optionAVotes,
+            option_b_title: optionBTitle,
+            option_b_votes: optionBVotes,
+            
             user_id: client.auth.user().id, 
         })
         .select('*');
-    console.log(poll);
-    return response;
+ console.log(response.data)
 
-    
+    return response.data;
 }
-

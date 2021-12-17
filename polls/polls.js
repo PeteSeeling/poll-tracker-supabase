@@ -1,9 +1,10 @@
 // import functions and grab DOM elements
-import { createPoll } from '../fetch-utils.js';
+import { getPolls, createPoll } from '../fetch-utils.js';
+import { renderPoll } from '../render-utils.js';
 
 
 const form = document.getElementById('form');
-const questionEl = document.getElementById('question');
+const questionEl = document.querySelector('.question');
 const optionATitleEl = document.getElementById('option-a-title');
 const optionAVotesEl = document.getElementById('option-a-votes');
 
@@ -12,37 +13,91 @@ const optionBVotesEl = document.getElementById('option-b-votes');
 const optionAAddButton = document.getElementById('option-a-add');
 const optionBAddButton = document.getElementById('option-b-add');
 const closePollButton = document.getElementById('close-poll');
-const currentPollEl = document.getElementById('current-poll');
+const currentPollEl = document.querySelector('.current-poll');
 
 // let state
-let pastPollsArray = [];
 
+let question = '';
+let optionATitle = '';
+let optionAVotes = 0;
+let optionBTitle = '';
+let optionBVotes = 0;
+
+let pastPollsArray = [];
 
 // set event listeners 
   // get user input
-form.addEventListener('sibmit', (e) => {
+form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
+    const data = new FormData(form);
 
-    const question = formData.get('question');
-    const optionA = formData.get('option-a');
-    const optionB = formData.get('option-b');
+    question = data.get('form-question');
+    optionATitle = data.get('option-a');
+    optionBTitle = data.get('option-b');
+   
 
-    
-
-    console.log(question);
+    questionEl.textContent = question;
+    optionATitleEl.textContent = optionATitle;
+    optionBTitleEl.textContent = optionBTitle;
+   
+    console.log(question, optionATitle, optionBTitle);
     form.reset();
-
     displayCurrentPollEl();
+});
+
+
+
+optionAAddButton.addEventListener('click', () => {
+    optionAVotes++;
+
+    optionAVotesEl.textContent = optionAVotes;
+});
+
+
+optionBAddButton.addEventListener('click', () => {
+    optionBVotes++;
+
+    optionBVotesEl.textContent = optionBVotes;
+});
+
+closePollButton.addEventListener('click', () => {
 
 });
 
-function displayCurrentPollEl(){
-
-    currentPollEl.textContent = '';
-
-
-}
 
   // use user input to update state 
   // update DOM to reflect the new state
+function makePoll(){
+    return {
+        question: question,
+        optionAtitle: optionATitle,
+        optionBTitle: optionBTitle,
+        optionAVotes: optionAVotes,
+        optionBVotes: optionBVotes,
+    };
+}
+function resetState(){
+    question = '';
+    optionATitle = '';
+    optionBTitle = '';
+    optionAVotes = 0;
+    optionBVotes = '';
+
+}
+
+function displayCurrentPollEl(){
+    
+
+    questionEl.textContent = question;
+    optionATitleEl.textContent = optionATitle;
+    optionBTitleEl.textContent = optionBTitle;
+    optionAVotesEl.textContent = optionAVotes;
+    optionBVotesEl.textContent = optionBVotes;
+
+}
+
+function makeCurrentPoll(){
+    return {
+        question, optionATitle, optionBTitle, optionAVotes, optionBVotes
+    };
+}
