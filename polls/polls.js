@@ -72,6 +72,8 @@ closePollButton.addEventListener('click', async() =>{
     const poll = makePoll();
 
     await createPoll(poll);
+
+    
     
     
     const polls = await getPolls();
@@ -86,7 +88,7 @@ closePollButton.addEventListener('click', async() =>{
 function makePoll(){
     return {
         question: question,
-        optionAtitle: optionATitle,
+        optionATitle: optionATitle,
         optionBTitle: optionBTitle,
         optionAVotes: optionAVotes,
         optionBVotes: optionBVotes,

@@ -42,7 +42,7 @@ export async function logout(){
 export async function getPolls() {
     const response = await client
         .from('polls')
-        .select()
+        .select('*')
         .match({ user_id: client.auth.user().id, });
     console.log(response.data);
     return response.data;
