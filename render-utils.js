@@ -1,6 +1,6 @@
 
 
-export async function renderPoll(poll){
+export function renderPoll(polls){
 
     const newPollEl = document.createElement ('div');
     const newQuestionEl = document.createElement ('p');
@@ -9,16 +9,18 @@ export async function renderPoll(poll){
     const newVotesAEl = document.createElement ('p');
     const newVotesBEl = document.createElement ('p');
 
-    newQuestionEl.textContent = poll.question;
-    newOptionAEl.textContent = poll.option_a_title;
-    newOptionBEl.textContent = poll.option_b_title;
+    newQuestionEl.textContent = polls.question;
+    newOptionAEl.textContent = polls.option_a_title;
+    newOptionBEl.textContent = polls.option_b_title;
     
-    newVotesAEl.textContent = poll.option_a_votes;
-    newVotesBEl.textContent = poll.option_b_votes;
+    newVotesAEl.textContent = polls.option_a_votes;
+    newVotesBEl.textContent = polls.option_b_votes;
 
     newPollEl.append(newQuestionEl, newOptionAEl, newOptionBEl, newVotesAEl, newVotesBEl);
 
     return newPollEl;
 
 }
+
+
 

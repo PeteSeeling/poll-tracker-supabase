@@ -48,7 +48,7 @@ export async function getPolls() {
     return response.data;
 }
 
-export async function createPoll(question, optionATitle, optionBTitle, optionAVotes, optionBVotes) {
+export async function createPoll({ question, optionATitle, optionBTitle, optionAVotes, optionBVotes }) {
     const response = await client
         .from('polls')
         .insert({
@@ -60,8 +60,8 @@ export async function createPoll(question, optionATitle, optionBTitle, optionAVo
             option_b_votes: optionBVotes,
 
             user_id: client.auth.user().id, 
+       
         });
-      
         
         // .select('*');
    
