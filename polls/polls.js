@@ -109,8 +109,8 @@ function displayCurrentPollEl(){
 
     questionEl.textContent = question;
     optionATitleEl.textContent = optionATitle;
-    optionBTitleEl.textContent = optionBTitle;
     optionAVotesEl.textContent = optionAVotes;
+    optionBTitleEl.textContent = optionBTitle;
     optionBVotesEl.textContent = optionBVotes;
 
     const newPollEl = renderPoll(currentPollEl);
