@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { getPolls, createPoll } from '../fetch-utils.js';
+import { getPolls, createPoll, logout } from '../fetch-utils.js';
 import { renderPoll } from '../render-utils.js';
 
 
@@ -15,7 +15,7 @@ const optionBAddButton = document.getElementById('option-b-add');
 const closePollButton = document.getElementById('close-poll');
 const currentPollEl = document.querySelector('.current-poll');
 const pastPollsEl = document.querySelector('.past-polls');
-
+const logoutButtonEl = document.getElementById('logout');
 // let state
 
 let question = '';
@@ -74,12 +74,18 @@ closePollButton.addEventListener('click', async() =>{
     await createPoll(poll);
 
     
-    
-    
     const polls = await getPolls();
     console.log(polls);
     
+
     displayPastPolls();
+    displayCurrentPollEl();
+    resetState();
+    
+});
+
+logoutButtonEl.addEventListener('click', () =>{
+    logout();
 });
 
 
@@ -89,8 +95,8 @@ function makePoll(){
     return {
         question: question,
         optionATitle: optionATitle,
-        optionBTitle: optionBTitle,
         optionAVotes: optionAVotes,
+        optionBTitle: optionBTitle,
         optionBVotes: optionBVotes,
     };
 }
@@ -99,7 +105,7 @@ function resetState(){
     optionATitle = '';
     optionBTitle = '';
     optionAVotes = 0;
-    optionBVotes = '';
+    optionBVotes = 0;
 
 }
 
@@ -114,14 +120,14 @@ function displayCurrentPollEl(){
     optionBVotesEl.textContent = optionBVotes;
 
     const newPollEl = renderPoll(currentPollEl);
-
+    console.log(newPollEl);
     // newPollEl.append(currentPollEl);
 
 }
 
 function makeCurrentPoll(){
     return {
-        question, optionATitle, optionBTitle, optionAVotes, optionBVotes
+        question, optionATitle, optionAVotes, optionBTitle, optionBVotes
     };
 }
 
