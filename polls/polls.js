@@ -50,7 +50,6 @@ optionAAddButton.addEventListener('click', () => {
     optionAVotesEl.textContent = optionAVotes;
 });
 
-
 optionBAddButton.addEventListener('click', () => {
     optionBVotes++;
 
@@ -70,7 +69,6 @@ closePollButton.addEventListener('click', async() =>{
     displayPastPolls();
     displayCurrentPollEl();
     resetState();
-    
 });
 
 logoutButtonEl.addEventListener('click', () =>{
