@@ -2,11 +2,11 @@
 body {
     /* feel free to update these css variables for a quick theme */
     
-    --color1: white;
-    --color2: white;
-    --color3: white;
-    --color4: white;
-    --color5: white;
+    --color1: rgba(104, 186, 206, 0.74);
+    --color2: rgb(79, 159, 161);
+    --color3: rgb(154, 241, 237);
+    --color4: rgb(128, 133, 211);
+    --color5: rgb(182, 229, 227);
     
     /* https://coolors.co/generate and click export -> scss to get the colors to copy and paste below*/
         
@@ -94,21 +94,24 @@ display:block;
 justify-content: center;
 text-align: center;
 align-items: center;
-margin-right:50%;
-border-color: crimson;
 border:solid 2px;
+font-size: larger;
+
 
 
 }
 .buttons{
     display:flex;
-    float:left;
-    margin-right:45%;
+    align-items: center;
+    height: 70px;
+    
 }
 .past-polls{
     display:flex;
     justify-content: center;
     align-items: center;
+    font-size: larger;
+    text-align: center;
     border:solid 2px;
     border-color: black;
     width:100%;
@@ -116,5 +119,22 @@ border:solid 2px;
 .auth-main{
     display:flex;
     flex-direction: column;
+    background-color: rgb(83, 157, 218);
+    text-align: center;
+    font-size: 2rem;
 }
 
+#logout{
+    display: row;
+    height: 30px;
+    width:100px;
+    margin-left: 91%;
+    margin-top:1%;
+    font-size: larger;
+}
+.polls-container{
+    width: 30%;
+    text-align: center;
+    font-size: larger;
+    float:right;
+}

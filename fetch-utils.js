@@ -7,11 +7,10 @@ const client = supabase.createClient(supabase_Url, SUPABASE_KEY);
 
 export async function getUser(){
     return client.auth.session();
-
 }
+
 export async function checkAuth(){
     const user = await getUser();
-
     if (!user) location.replace('../');
 }
 
@@ -62,10 +61,6 @@ export async function createPoll({ question, optionATitle, optionAVotes, optionB
             user_id: client.auth.user().id, 
        
         });
-        
-        // .select('*');
-   
-    console.log(response.data);
 
     return response.data;
 }
