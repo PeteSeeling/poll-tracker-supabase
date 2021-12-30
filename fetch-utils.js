@@ -7,11 +7,10 @@ const client = supabase.createClient(supabase_Url, SUPABASE_KEY);
 
 export async function getUser(){
     return client.auth.session();
-
 }
+
 export async function checkAuth(){
     const user = await getUser();
-
     if (!user) location.replace('../');
 }
 
@@ -48,7 +47,7 @@ export async function getPolls() {
     return response.data;
 }
 
-export async function createPoll(question, optionATitle, optionBTitle, optionAVotes, optionBVotes) {
+export async function createPoll({ question, optionATitle, optionAVotes, optionBTitle, optionBVotes }) {
     const response = await client
         .from('polls')
         .insert({
@@ -60,12 +59,8 @@ export async function createPoll(question, optionATitle, optionBTitle, optionAVo
             option_b_votes: optionBVotes,
 
             user_id: client.auth.user().id, 
+       
         });
-      
-        
-        // .select('*');
-   
-    console.log(response.data);
 
     return response.data;
 }

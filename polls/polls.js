@@ -1,13 +1,11 @@
 // import functions and grab DOM elements
-import { getPolls, createPoll } from '../fetch-utils.js';
+import { getPolls, createPoll, logout, checkAuth } from '../fetch-utils.js';
 import { renderPoll } from '../render-utils.js';
-
 
 const form = document.getElementById('form');
 const questionEl = document.querySelector('.question');
 const optionATitleEl = document.getElementById('option-a-title');
 const optionAVotesEl = document.getElementById('option-a-votes');
-
 const optionBTitleEl = document.getElementById('option-b-title');
 const optionBVotesEl = document.getElementById('option-b-votes');
 const optionAAddButton = document.getElementById('option-a-add');
@@ -15,8 +13,8 @@ const optionBAddButton = document.getElementById('option-b-add');
 const closePollButton = document.getElementById('close-poll');
 const currentPollEl = document.querySelector('.current-poll');
 const pastPollsEl = document.querySelector('.past-polls');
+const logoutButtonEl = document.getElementById('logout');
 
-// let state
 
 let question = '';
 let optionATitle = '';
@@ -24,14 +22,11 @@ let optionAVotes = 0;
 let optionBTitle = '';
 let optionBVotes = 0;
 
-let pastPollsArray = [];
+checkAuth();
 
-// set event listeners 
-  // get user input
 window.addEventListener('load', async() =>{
     await displayPastPolls();
 });
-
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -41,17 +36,13 @@ form.addEventListener('submit', (e) => {
     optionATitle = data.get('option-a');
     optionBTitle = data.get('option-b');
    
-
     questionEl.textContent = question;
     optionATitleEl.textContent = optionATitle;
     optionBTitleEl.textContent = optionBTitle;
    
-    
     form.reset();
     displayCurrentPollEl();
 });
-
-
 
 optionAAddButton.addEventListener('click', () => {
     optionAVotes++;
@@ -73,24 +64,25 @@ closePollButton.addEventListener('click', async() =>{
 
     await createPoll(poll);
 
-    
-    
-    
     const polls = await getPolls();
     console.log(polls);
     
     displayPastPolls();
+    displayCurrentPollEl();
+    resetState();
+    
 });
 
+logoutButtonEl.addEventListener('click', () =>{
+    logout();
+});
 
-  // use user input to update state 
-  // update DOM to reflect the new state
 function makePoll(){
     return {
         question: question,
         optionATitle: optionATitle,
-        optionBTitle: optionBTitle,
         optionAVotes: optionAVotes,
+        optionBTitle: optionBTitle,
         optionBVotes: optionBVotes,
     };
 }
@@ -99,32 +91,26 @@ function resetState(){
     optionATitle = '';
     optionBTitle = '';
     optionAVotes = 0;
-    optionBVotes = '';
+    optionBVotes = 0;
 
 }
-
 function displayCurrentPollEl(){
-    
     const currentPollEl = makeCurrentPoll();
 
     questionEl.textContent = question;
     optionATitleEl.textContent = optionATitle;
-    optionBTitleEl.textContent = optionBTitle;
     optionAVotesEl.textContent = optionAVotes;
+    optionBTitleEl.textContent = optionBTitle;
     optionBVotesEl.textContent = optionBVotes;
 
     const newPollEl = renderPoll(currentPollEl);
-
-    // newPollEl.append(currentPollEl);
-
+    console.log(newPollEl);
 }
-
 function makeCurrentPoll(){
     return {
-        question, optionATitle, optionBTitle, optionAVotes, optionBVotes
+        question, optionATitle, optionAVotes, optionBTitle, optionBVotes
     };
 }
-
 async function displayPastPolls(){
     const polls = await getPolls();
 
